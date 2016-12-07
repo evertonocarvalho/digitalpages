@@ -32,7 +32,7 @@
                   </c:forEach>
                   </tbody>
           </table>
-		  <template:paginationComponent paginatedList="${paginatedList}" page="${param.page}" action="/category"/>
+		  <template:paginationComponent paginatedList="${paginatedList}" page="${param.page}" action="/listCharacters"/>
           <a href="<c:url value='/category/form'/>" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
         </div>
     </div>
