@@ -1,18 +1,20 @@
 package br.com.digitalpages.marvel.controller;
 
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +23,7 @@ import br.com.digitalpages.marvel.model.Character;
 import br.com.digitalpages.marvel.model.CharacterResponse;
 import br.com.digitalpages.marvel.model.ComicResponse;
 import br.com.digitalpages.marvel.model.Login;
+import br.com.digitalpages.marvel.model.PaginatedList;
 
 /**
  * @author Everton Carvalho [evertonocarvalho@gmail.com]
@@ -51,7 +54,7 @@ public class MarvelAppController {
 		CharacterResponse response = new RestTemplate().getForObject("https://gateway.marvel.com/v1/public/characters" + this.generateURLParams(login), CharacterResponse.class);
 
 		characterRepository.save(response.getData().getResults());
-		return this.listCharacters();
+		return listCharacters(0);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/characterDetail/{id}")
@@ -75,18 +78,13 @@ public class MarvelAppController {
 		if (loginSession == null) {
 			return this.initLogin();
 		}
-		return this.listCharacters();
+		return listCharacters(0);
 	}
 
 	@RequestMapping("/listCharacters")
-	public ModelAndView listCharacters() throws Exception {
-		Iterable<Character> iterable = characterRepository.findAll();
-		ArrayList<Character> list = new ArrayList<Character>();
-		for (Character character : iterable) {
-			list.add(character);
-		}
-		Collections.sort(list);
-		return new ModelAndView("marvel/list").addObject("listCharacters", list);
+	public ModelAndView listCharacters(@RequestParam("page") int page) throws Exception {
+		Page<Character> pageCharacters = characterRepository.findAll(new PageRequest(page, 20, Sort.Direction.ASC, "name"));
+		return new ModelAndView("marvel/list").addObject("paginatedList", new PaginatedList(pageCharacters.getContent(), 1485));
 	}
 
 	private String generateURLParams(Login login) throws Exception {
