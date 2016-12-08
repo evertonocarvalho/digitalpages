@@ -30,7 +30,7 @@
 					<tbody>
 						<c:forEach items='${paginatedList.currentList}' var="character">
 							<tr>
-								<td><a href="/MarvelWeb/characterDetail/${character.id}">${character.name}</a></td>
+								<td><a href="/MarvelWeb/characterDetail/${empty param.page ? 0 : param.page}/${character.id}">${character.name}</a></td>
 								<td>${character.description}</td>
 								<td>${character.dataModificacao}</td>
 							</tr>

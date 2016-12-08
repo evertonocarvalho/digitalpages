@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<div class="container" align="center">
-			<form:form role="form" commandName="character" action="/MarvelWeb/backFromCharacterDetail" method="POST">
+			<form:form role="form" commandName="character" action="/MarvelWeb/listCharacters?page=${backTo}" method="POST">
 				<table class="table">
 					<tr>
 						<td rowspan="2" width="15%"><img alt="${character.name}" src="${character.thumbnail.path}/portrait_xlarge.${character.thumbnail.extension}"></td>

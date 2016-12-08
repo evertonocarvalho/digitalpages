@@ -7,7 +7,7 @@
 window.onload = function() {		
 	$('.pagination').jqPagination({
 		link_string	: '<c:url value='${action}'/>?page={page_number}',		
-		paged		: function(page) {
+		paged : function (page) {
 			document.location.href = "<c:url value='${action}'/>?page="+(page-1);
 		}
 	});
