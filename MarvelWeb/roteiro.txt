@@ -15,6 +15,7 @@ Instruções:
 			 [http://localhost:8080/characters.json/delete/{id}] = Deleta personagem (enviar somente ID do personagem na URL).
 
 4. Os scripts curl para testes da API RESTful estão no diretório [curl_scripts], na raíz do projeto.
+   Seus parâmetros devem ser alterados conforme a necessidade dos testes.
 
 5. O acesso online para a aplicação já instalada e API RESTful encontra-se em: 
    [https://marvelapp.herokuapp.com/MarvelWeb]
