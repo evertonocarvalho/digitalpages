@@ -2,6 +2,9 @@ package br.com.digitalpages.marvel.model;
 
 import java.util.List;
 
+/**
+ * @author Everton Carvalho [evertonocarvalho@gmail.com]
+ */
 public class PaginatedList {
 
 	private final List<?> currentList;

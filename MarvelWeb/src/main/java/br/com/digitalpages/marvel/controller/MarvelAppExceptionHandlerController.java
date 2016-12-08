@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Everton Carvalho [evertonocarvalho@gmail.com]
+ */
 @ControllerAdvice
 public class MarvelAppExceptionHandlerController {
 
