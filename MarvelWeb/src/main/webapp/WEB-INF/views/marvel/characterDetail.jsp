@@ -18,7 +18,7 @@
 			<form:form role="form" commandName="character" action="/MarvelWeb/listCharacters?page=${backTo}" method="POST">
 				<table class="table">
 					<tr>
-						<td rowspan="2" width="15%"><img alt="${character.name}" src="${character.thumbnail.path}/portrait_xlarge.${character.thumbnail.extension}"></td>
+						<td rowspan="2" width="15%"><img alt="${character.name}" src="${character.thumbnailPath}/portrait_xlarge.${character.thumbnailExtension}"></td>
 						<td><h2>${character.name}</h2></td>
 					</tr>
 					<tr>

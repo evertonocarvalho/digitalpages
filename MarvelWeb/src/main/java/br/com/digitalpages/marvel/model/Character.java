@@ -1,14 +1,16 @@
 package br.com.digitalpages.marvel.model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Everton Carvalho [evertonocarvalho@gmail.com]
@@ -19,16 +21,12 @@ public class Character implements Comparable<Character> {
 
 	@Id
 	private Long id;
-
 	private String name;
-
 	@Column(columnDefinition = "LONGVARCHAR")
 	private String description;
-
 	private Date modified;
-
-	@OneToOne(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Thumbnail thumbnail;
+	private String thumbnailPath;
+	private String thumbnailExtension;
 
 	public Long getId() {
 		return this.id;
@@ -65,19 +63,34 @@ public class Character implements Comparable<Character> {
 		return "";
 	}
 
+	public void setDataModificacao(String dataModificacao) throws ParseException {
+		this.modified = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dataModificacao);
+	}
+
 	public void setModified(Date modified) {
 		this.modified = modified;
 	}
 
-	public Thumbnail getThumbnail() {
-		return this.thumbnail;
+	public String getThumbnailPath() {
+		return thumbnailPath;
 	}
 
-	public void setThumbnail(Thumbnail thumbnail) {
-		this.thumbnail = thumbnail;
+	public void setThumbnailPath(String thumbnailPath) {
+		this.thumbnailPath = thumbnailPath;
+	}
 
-		// Used to persist Thumbnail with the FK reference from this class.
-		this.thumbnail.setCharacter(this);
+	public String getThumbnailExtension() {
+		return thumbnailExtension;
+	}
+
+	public void setThumbnailExtension(String thumbnailExtension) {
+		this.thumbnailExtension = thumbnailExtension;
+	}
+
+	@JsonProperty("thumbnail")
+	public void setThumbnail(Map<String, String> thumbnailMap) {
+		this.thumbnailPath = thumbnailMap.get("path");
+		this.thumbnailExtension = thumbnailMap.get("extension");
 	}
 
 	@Override

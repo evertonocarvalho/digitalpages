@@ -48,7 +48,7 @@ public class MarvelAppController {
 		return listCharacters(0);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/listCharacters")
+	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "/listCharacters")
 	public ModelAndView listCharacters(@RequestParam("page") int page) throws Exception {
 		Page<Character> pageCharacters = characterRepository.findAll(new PageRequest(page, 20, Sort.Direction.ASC, "name"));
 		return new ModelAndView("marvel/list").addObject("paginatedList", new PaginatedList(pageCharacters.getContent(), 1485));
