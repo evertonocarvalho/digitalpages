@@ -9,6 +9,7 @@ public class MarvelAppExceptionHandlerController {
 
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleException(Exception exception) {
+		exception.printStackTrace();
 		return new ModelAndView("marvel/error").addObject("exception", exception);
 	}
 
