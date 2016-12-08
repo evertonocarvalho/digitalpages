@@ -3,6 +3,7 @@ package br.com.digitalpages.marvel.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,8 +50,13 @@ public class MarvelAppRESTController {
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
 	public String deleteCharacter(@PathVariable("id") long idCharacter) throws Exception {
-		characterRepository.delete(idCharacter);
-		return "Character deleted!";
+		try {
+			characterRepository.delete(idCharacter);
+			return "Character deleted!";
+		}
+		catch (EmptyResultDataAccessException e) {
+			return "Character not found!";
+		}
 	}
 
 }
