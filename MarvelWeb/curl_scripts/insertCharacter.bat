@@ -1,0 +1,1 @@
+curl --header "Content-type: application/json;charset=UTF-8" --request POST --data "{\"id\":1, \"name\":\"Test Character\", \"description\":\"Test Character Description\", \"thumbnailPath\":\"http://test.thumbnail.path.1\", \"thumbnailExtension\":\"jpg\", \"dataModificacao\":\"08/12/2016 18:35\"}" https://marvelapp.herokuapp.com/characters.json/insert

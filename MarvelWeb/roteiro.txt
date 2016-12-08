@@ -1,0 +1,30 @@
+Instruções:
+
+1. Executar [mvn clean install] no diretório onde encontra-se o arquivo pom.xml (raíz do projeto).
+   A aplicação será compilada e os testes unitários da API RESTful serão executados.
+
+2. Executar [mvn spring-boot:run] para inicializar a aplicação Spring Boot.
+   A URL para acessar a aplicação é: [http://localhost:8080/MarvelWeb]
+
+3. A API RESTful encontra-se em: [http://localhost:8080/characters.json]
+
+   Serviços: [http://localhost:8080/characters.json/list]        = Lista personagens.
+			 [http://localhost:8080/characters.json/get/{id}]    = Recupera personagem por ID.
+			 [http://localhost:8080/characters.json/insert]      = Insere personagem (enviar somente JSON).
+			 [http://localhost:8080/characters.json/update/{id}] = Atualiza personagem (enviar JSON + ID do personagem na URL).
+			 [http://localhost:8080/characters.json/delete/{id}] = Deleta personagem (enviar somente ID do personagem na URL).
+
+4. Os scripts curl para testes da API RESTful estão no diretório [curl_scripts], na raíz do projeto.
+
+5. O acesso online para a aplicação já instalada e API RESTful encontra-se em: 
+   [https://marvelapp.herokuapp.com/MarvelWeb]
+   [https://marvelapp.herokuapp.com/characters.json]
+
+6. O código fonte da aplicação também está disponível em: [https://github.com/evertonocarvalho/digitalpages] 
+
+OBS:
+I  . O Maven deve estar instalado na máquina.
+II . O banco de dados em memória é o HSQLDB.
+III. Por utilizar banco de dados em memória, não consultei os 1485 personagens da API Marvel,
+	 apenas os 100 primeiros personagens são consumidos e persistidos no HSQLDB.
+IV . A API Marvel falha algumas vezes, retornando o erro HTTP 404 ao tentar consumir characters ou comics da mesma.

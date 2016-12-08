@@ -1,0 +1,1 @@
+curl --header "Content-type: application/json;charset=UTF-8" --request PUT --data "{\"name\":\"Test Character Updated\", \"description\":\"Test Character Description Updated\", \"thumbnailPath\":\"http://test.thumbnail.path.1\", \"thumbnailExtension\":\"jpg\", \"dataModificacao\":\"08/12/2016 18:40\"}" https://marvelapp.herokuapp.com/characters.json/update/1

@@ -1,0 +1,1 @@
+curl --request GET https://marvelapp.herokuapp.com/characters.json/get/1
