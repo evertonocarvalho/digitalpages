@@ -1,1 +1,1 @@
-java java -Dserver.port=37922 $JAVA_OPTS -jar target/*.war
+web java -Dserver.port=37922 $JAVA_OPTS -jar target/*.war
